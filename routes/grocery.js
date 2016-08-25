@@ -5,18 +5,18 @@ const groceryModel = require('../models/groceryModel.js');
 
 
 router.get('/', function(req, res, next) {
-  ItemModel.find((err, items) => {
-    res.render('index.ejs', { item });
+  groceryModel.find({},(err, groceries) => {
+    res.render('index.ejs', { groceries: groceries });
   });
 });
 
 router.post('/', function(req, res, next) {
   console.log(req.body);
   const grocery = new groceryModel({
-    name: req.body.name,
-    quantity: Number(req.body.quantity)
+    text: req.body.text,
+    qty: Number(req.body.qty)
   });
-  item.save((err, item) => {
+  grocery.save((err, grocery) => {
     res.redirect('/');
   });
 });
